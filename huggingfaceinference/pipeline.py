@@ -5,8 +5,8 @@ gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/tinygram")
 
 def gramcorrector(gtokenizer, gmodel, n=None):
   
-  if n is None:
-    n == 1
+  if n == None:
+    n = 1
   text = input()
   input_ids = gtokenizer.encode(text, return_tensors='pt')
   outputs = gmodel.generate(
