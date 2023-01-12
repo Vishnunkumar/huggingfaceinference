@@ -1,13 +1,15 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-gtokenizer = AutoTokenizer.from_pretrained("vishnun/tinygram")
-gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/tinygram")
-
-def gramcorrector(gtokenizer, gmodel, n=None):
+def gramcorrector(text, gtokenizer=None, gmodel=None, n=None):
   
   if n == None:
     n = 1
-  text = input()
+  
+  if gtokenizer == None:
+    gtokenizer = AutoTokenizer.from_pretrained("vishnun/tinygram")
+  if gmodel == None:
+    gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/tinygram")
+  
   input_ids = gtokenizer.encode(text, return_tensors='pt')
   outputs = gmodel.generate(
     input_ids,
@@ -23,4 +25,3 @@ def gramcorrector(gtokenizer, gmodel, n=None):
     out_text.append(gtokenizer.decode(y, skip_special_tokens=True))
   
   return out_text
-    
