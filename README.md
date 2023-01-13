@@ -2,7 +2,7 @@
 Simple inference usecases using hugging transformers library and finetuned tiny models
 
 # Installation
-pip install huggingfaceinference
+```pip install huggingfaceinference```
 
 # Implementation
 
