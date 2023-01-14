@@ -1,5 +1,5 @@
 # huggingfaceinference
-Simple inference usecases using hugging transformers library and finetuned tiny models
+Simple inference pipelines using hugging transformers library and finetuned tiny models. Will be highly useful on scenarios where we need to optimize storage and memory cost with a compensation in accuracy.
 
 # Installation
 ```pip install huggingfaceinference```
