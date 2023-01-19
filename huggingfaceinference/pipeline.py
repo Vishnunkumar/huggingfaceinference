@@ -10,7 +10,7 @@ class TinyGram:
     if self.gmodel == None:
       self.gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/tinygram")
 
-  def gramcorrector(text, gtokenizer=None, gmodel=None, n=None):
+  def gramcorrector(self, text, gtokenizer=None, gmodel=None, n=None):
     
     self.text = text
     self.n = n
