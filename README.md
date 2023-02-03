@@ -15,6 +15,7 @@ from huggingfaceinference.pipeline import TinyGram
 
 tg = TinyGram()
 tg.gramcorrector("What do you think I shold be doing", n=3)
+
 """ Output: ['What do you think I need to be doing',
  'what do you think I should be doing',
  'what do you think I will be doing']"""
