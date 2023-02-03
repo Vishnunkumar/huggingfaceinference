@@ -11,9 +11,10 @@ Simple inference pipelines using hugging transformers library and finetuned tiny
 A simple grammatical and spelling resolver using huggingface transformers. The Dataset (around 50k) is retrieved from kaggle and corrupted using random substution of letters in words for finetuning. The base model used was _google/t5-efficient-tiny-nl32_ as it is highly compact and efficient(<250 MB).(was modeled on fp32 to reduce drop in efficiency). 
 ```python
 
-from huggingfaceinference.pipeline import gramcorrector
+from huggingfaceinference.pipeline import TinyGram
 
-gramcorrector("What do you think I shold be doing", n=3)
+tg = TinyGram()
+tg.gramcorrector("What do you think I shold be doing", n=3)
 """ Output: ['What do you think I need to be doing',
  'what do you think I should be doing',
  'what do you think I will be doing']"""
