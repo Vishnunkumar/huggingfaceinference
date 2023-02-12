@@ -48,7 +48,7 @@ class KnowledgeGraph:
     if self.gmodel == None:
       self.gmodel = DistilBertForTokenClassification.from_pretrained("vishnun/kg_model")
   
-    return pipeline('ner', model = self.gmodel, tokenizer = self.gtokenzier)
+    return pipeline('ner', model = self.gmodel, tokenizer = self.gtokenizer)
   
   def get_graph(self, text, pipeline):
     self.pipeline = pipeline
