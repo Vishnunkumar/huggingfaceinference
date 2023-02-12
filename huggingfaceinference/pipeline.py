@@ -1,6 +1,7 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, DistilBertForTokenClassification
 
 class TinyGram:
+  
   def __init__(self, gtokenizer=None, gmodel=None):
     self.gtokenizer = gtokenizer
     self.gmodel = gmodel
@@ -45,7 +46,7 @@ class KnowledgeGraph:
     if self.gtokenizer == None:
       self.gtokenizer = AutoTokenizer.from_pretrained("vishnun/kg_model")
     if self.gmodel == None:
-      self.gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/kg_model")
+      self.gmodel = DistilBertForTokenClassification.from_pretrained("vishnun/kg_model")
   
     return pipeline('ner', model = self.gmodel, tokenizer = self.gtokenzier)
   
