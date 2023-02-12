@@ -1,4 +1,5 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline, DistilBertForTokenClassification
+import torch
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, DistilBertForTokenClassification
 
 class TinyGram:
   
@@ -48,10 +49,23 @@ class KnowledgeGraph:
     if self.gmodel == None:
       self.gmodel = DistilBertForTokenClassification.from_pretrained("vishnun/kg_model")
   
-    return pipeline('ner', model = self.gmodel, tokenizer = self.gtokenizer)
-  
-  def get_graph(self, text, pipeline):
-    self.pipeline = pipeline
+  def get_graph(self, text, gtokenizer=None, gmodel=None):
+    
     self.text = text
     
-    return self.pipeline(self.text)
+    inputs = self.gtokenizer(self.text, return_tensors="pt")
+    tokens = self.gtokenizer.tokenize(self.text)
+    
+    with torch.no_grad():
+      logits = self.gmodel(**inputs).logits
+    
+    predictions = torch.argmax(logits, dim=2)
+    predicted_token_class = [self.gmodel.config.id2label[t.item()] for t in predictions[0]]
+    
+    entities = []
+    for label, text in zip(predicted_token_class, tokens):
+      js_dict = {}
+      js_dict[text] = label
+      entities.append(js_dict)
+    
+    return entities
