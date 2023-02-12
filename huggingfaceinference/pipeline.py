@@ -60,7 +60,7 @@ class KnowledgeGraph:
       logits = self.gmodel(**inputs).logits
     
     predictions = torch.argmax(logits, dim=2)
-    predicted_token_class = [self.gmodel.config.id2label[t.item()] for t in predictions[0]]
+    predicted_token_class = [self.gmodel.config.id2label[t.item()] for t in predictions[0][1:-1]]
     
     entities = []
     for label, text in zip(predicted_token_class, tokens):
