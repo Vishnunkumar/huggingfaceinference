@@ -10,7 +10,7 @@ requirements = [
 
 setuptools.setup(
     name="huggingfaceinference",
-    version="0.6",
+    version="0.7",
     author="Vishnu Nandakumar",
     author_email="nkumarvishnu25@gmail.com",
     description="Simple inference usecases using hugging transformers library on varied use cases of the AI/ML Domain",
