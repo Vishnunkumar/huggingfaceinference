@@ -33,3 +33,24 @@ class TinyGram:
       out_text.append(self.gtokenizer.decode(y, skip_special_tokens=True))
     
     return out_text
+
+ 
+class KnowledgeGraph:
+  
+  def __init__(self, gtokenizer=None, gmodel=None):
+    
+    self.gtokenizer = gtokenizer
+    self.gmodel = gmodel
+    
+    if self.gtokenizer == None:
+      self.gtokenizer = AutoTokenizer.from_pretrained("vishnun/kg_model")
+    if self.gmodel == None:
+      self.gmodel = AutoModelForSeq2SeqLM.from_pretrained("vishnun/kg_model")
+  
+    return pipeline('ner', model = self.gmodel, tokenizer = self.gtokenzier)
+  
+  def get_graph(self, text, pipeline):
+    self.pipeline = pipeline
+    self.text = text
+    
+    return self.pipeline(self.text)
