@@ -1,21 +1,34 @@
-from distutils.core import setup
+import setuptools
 
-setup(
-  name = 'huggingfaceinference',         # How you named your package folder (MyLib)
-  packages = ['huggingfaceinference'],   # Chose the same as "name"
-  version = '0.4',      # Start with a small number and increase it with every change you make
-  license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = 'Simple inference usecases using hugging transformers library',   # Give a short description about your library
-  author = 'Vishnu N',                   # Type in your name
-  author_email = 'vishnunkumar25@gmail.com',      # Type in your E-Mail
-  url = 'https://github.com/Vishnunkumar/huggingfaceinference/',   # Provide either the link to your github or to your website
-  download_url ='https://github.com/Vishnunkumar/huggingfaceinference/archive/refs/tags/v-4.tar.gz',    # I explain this later on
-  keywords = ['Documents', 'Machine learning', 'NLP', 'Deep learning', 'Computer Vision'],   # Keywords that define your package best
-  install_requires = [            # I get to this in a second
-          'transformers',
-          'torch'
-  ],
-  classifiers=[
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+requirements = [
+  'transformers',
+  'torch',
+]
+
+setuptools.setup(
+    name="huggingfaceinference",
+    version="0.5",
+    author="Vishnu Nandakumar",
+    author_email="nkumarvishnu25@gmail.com",
+    description="Simple inference usecases using hugging transformers library on varied use cases of the AI/ML Domain",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url = 'https://github.com/Vishnunkumar/huggingfaceinference/',
+    packages=[
+        'huggingfaceinference',
+    ],
+    package_dir={'huggingfaceinference': 'huggingfaceinference'},
+    package_data={
+        'huggingfaceinference': ['huggingfaceinference/*.py']
+    },
+    install_requires=requirements,
+    license="MIT license",
+    zip_safe=False,
+    keywords='huggingfaceinference',
+    classifiers=(
     'Development Status :: 3 - Alpha',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
     'Intended Audience :: Developers',      # Define that your audience are developers
     'Topic :: Software Development :: Build Tools',
@@ -24,5 +37,5 @@ setup(
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
-  ],
+    ),
 )
